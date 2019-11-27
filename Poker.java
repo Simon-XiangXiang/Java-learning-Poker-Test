@@ -3,6 +3,7 @@ package com.xiangxiang.test;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
@@ -69,7 +70,15 @@ public class Poker {
 		System.out.println("1.叫地主                          2.不叫地主");
 		boolean flag = true;
 		while (flag) {
-			int i = sc.nextInt();
+			//Integer i = null; 可以但没必要,浪费资源
+			int i = 0; //这里必须要先给个值才行,因为try里面的代码可能会出问题而赋值失败,所以要提前赋值防止这种情况发生
+			try {
+				i = sc.nextInt();
+			} catch (InputMismatchException e) {  //异常
+				System.out.println("你输入不该输入的东西,程序出错了了.下次要按照要求输昂~");
+				System.exit(0);
+			}
+			
 			if (i == 1) {
 				System.out.println("------------------------------------------------");
 				you.addAll(dipai);
